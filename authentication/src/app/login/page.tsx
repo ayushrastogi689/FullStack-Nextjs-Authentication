@@ -23,7 +23,7 @@ function LoginPage() {
             <hr />
 
             <label htmlFor='email'>Email :</label>
-            <input id='email' type="text" value={user.email} placeholder='Email'
+            <input className='p-2 borfer border-green-300 rounded-lg m-4 focus:outline-none focus:border-gray-600 text-black' id='email' type="text" value={user.email} placeholder='Email'
                 onChange={(e) => {
                     setUser({ ...user, email: e.target.value })
                 }}
@@ -31,14 +31,14 @@ function LoginPage() {
             <hr />
 
             <label htmlFor='password'>Password :</label>
-            <input id='password' type="password" value={user.password} placeholder='Password'
+            <input className='p-2 borfer border-green-300 rounded-lg m-4 focus:outline-none focus:border-gray-600 text-black' id='password' type="password" value={user.password} placeholder='Password'
                 onChange={(e) => {
                     setUser({ ...user, password: e.target.value })
                 }}
             />
 
-            <button onClick={onLogin} className='p-2 border border-gray-300 rounded-lg mb-4 focus:border-gray-600 focus:outline-none  '>Signup</button>
-            <Link href={"/signup"}> Signup here</Link>
+            <button onClick={onLogin} className='p-2 border border-gray-300 rounded-lg mb-4 focus:border-gray-600 focus:outline-none  '>Login</button>
+            <Link href={"/signup"}> Visit Signup</Link>
         </div>
     )
 }
