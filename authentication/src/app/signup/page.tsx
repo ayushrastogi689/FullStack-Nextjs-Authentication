@@ -5,16 +5,27 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { axios } from "axios";
 
-
 function SignupPage() {
+    //const router = useRouter();
     const [user, setUser] = useState({
         username: "",
         email: "",
         password: "",
     });
+
+    const [buttonDisabled, setButtonDisabled] = useState(false);
     const onSignup = async () => {
 
     }
+
+    useEffect(() => {
+        if (user.username.length > 0 && user.email.length > 0 && user.password.length > 0) {
+            setButtonDisabled(false);
+        }
+        else {
+            setButtonDisabled(true);
+        }
+    }, [user])
 
     return (
         <div className='flex flex-col items-center justify-center min-h-screen py-2'>
@@ -24,7 +35,8 @@ function SignupPage() {
             <hr />
             <label htmlFor='username'>Username :</label>
 
-            <input id='username' type="text" value={user.username} placeholder='username'
+            <input className='p-2 borfer border-green-300 rounded-lg m-4 focus:outline-none focus:border-gray-600 text-black'
+                id='username' type="text" value={user.username} placeholder='username'
                 onChange={(e) => {
                     setUser({ ...user, username: e.target.value })
                 }}
@@ -33,7 +45,7 @@ function SignupPage() {
             <hr />
             <label htmlFor='email'>Email :</label>
 
-            <input id='email' type="text" value={user.email} placeholder='Email'
+            <input className='p-2 borfer border-green-300 rounded-lg m-4 focus:outline-none focus:border-gray-600 text-black' id='email' type="text" value={user.email} placeholder='Email'
                 onChange={(e) => {
                     setUser({ ...user, email: e.target.value })
                 }}
@@ -42,12 +54,12 @@ function SignupPage() {
             <hr />
             <label htmlFor='password'>Password :</label>
 
-            <input id='password' type="password" value={user.password} placeholder='Password'
+            <input className='p-2 borfer border-green-300 rounded-lg m-4 focus:outline-none focus:border-gray-600 text-black' id='password' type="password" value={user.password} placeholder='Password'
                 onChange={(e) => {
                     setUser({ ...user, password: e.target.value })
                 }}
             />
-            <button onClick={onSignup} className='p-2 border border-gray-300 rounded-lg mb-4 focus:border-gray-600 focus:outline-none  '>Signup</button>
+            <button onClick={onSignup} className='p-2 border border-gray-300 rounded-lg mb-4 focus:border-gray-600 focus:outline-none  '>{buttonDisabled ? "No Signup" : "Yes you can Sign up"}</button>
             <Link href={"/login"}> Visit Login here</Link>
         </div>
     )
